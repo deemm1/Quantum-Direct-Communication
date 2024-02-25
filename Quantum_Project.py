@@ -1,4 +1,3 @@
-from qiskit.visualization import plot_bloch_multivector, plot_state_qsphere
 from qiskit import QuantumCircuit, Aer, execute
 import numpy as np
 
@@ -64,10 +63,6 @@ def decode_message(m_sequence):
     for i in range(num_pairs):
         decoded_message+=output[i*2]
         
-    m_sequence.draw('mpl')
-        
-        
-   
     return decoded_message
 
 
@@ -87,17 +82,13 @@ shared_paris = np.random.randint(2, size=num_pairs)
 
 file = input('Enter your message: ')
 message = FileToBinary(file)
-print(message)
 
 qc_pairs = entangled_pairs(num_pairs)
 c_sequence, m_sequence, output = split_sequences(qc_pairs,shared_paris)
-print(output)
 m_sequence = encode_message(m_sequence, message, output)
 decoded_message = decode_message(m_sequence)
 
 
-print("Encoded Message:")
-print(encode_message)
-print("Decoded Message:")
-print(decoded_message)
-
+print('Message in binary:',message)
+print('Encoded Message:',m_sequence)
+print('Decoded Message:',decoded_message)
